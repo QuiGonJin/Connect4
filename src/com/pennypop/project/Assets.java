@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class Assets {
 	public static final AssetManager manager = new AssetManager();
-	
+
 	public static final String SFX_TXT = "assets/sfxButton.png";
 	public static final String API_TXT = "assets/apiButton.png";
 	public static final String GAME_TXT = "assets/gameButton.png";
@@ -17,11 +17,11 @@ public class Assets {
 	public static final String AI_TXT = "assets/AIGame.png";
 	public static final String SQUARE_TXT = "assets/square.png";
 	public static final String RED_TXT = "assets/red.png";
-	public static final String YELLOW_TXT = "assets/yellow.png";	
+	public static final String YELLOW_TXT = "assets/yellow.png";
 	public static final String CLICK_SOUND = "assets/button_click.wav";
 	public static final String FONT = "assets/font.fnt";
-	
-	public static void load(){
+
+	public static void load() {
 		manager.load(SFX_TXT, Texture.class);
 		manager.load(API_TXT, Texture.class);
 		manager.load(GAME_TXT, Texture.class);
@@ -35,10 +35,9 @@ public class Assets {
 		manager.load(CLICK_SOUND, Sound.class);
 		manager.load(FONT, BitmapFont.class);
 	}
-	
-	public static void dispose(){
+
+	public static void dispose() {
 		manager.dispose();
 	}
-	
-	
+
 }

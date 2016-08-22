@@ -6,69 +6,70 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
 
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-
 public class WeatherAPI {
 	private String api_url;
-	
+
 	private String name;
 	private String description;
 	private double windspeed;
 	private double temp;
-	
-	
+
 	/**
-	 * Constructs instance of weatherAPI to read weather conditions from openweathermap.org
-	 * @param url URL of the API
+	 * Constructs instance of weatherAPI to read weather conditions from
+	 * openweathermap.org
+	 * 
+	 * @param url
+	 *            URL of the API
 	 */
-	public WeatherAPI(String url){
+	public WeatherAPI(String url) {
 		this.api_url = url;
 		pull();
 	}
-	
+
 	/**
-	 * Calls the API and updates the name, description, windspeed, 
-	 * and temperature fields of the weatherAPI instance
+	 * Calls the API and updates the name, description, windspeed, and
+	 * temperature fields of the weatherAPI instance
 	 */
-	public void pull(){
+	public void pull() {
 		String response = callURL(api_url);
-		
+
 		JSONParser parser = new JSONParser();
-        try {
-        	//----------- Parse JSON from URL -----------------------------//
+		try {
+			// ----------- Parse JSON from URL -----------------------------//
 			JSONObject obj = (JSONObject) parser.parse(response);
 
-			//Get city
+			// Get city
 			this.name = ((String) obj.get("name"));
-			
-			//Get weather description
+
+			// Get weather description
 			JSONObject weather = (JSONObject) ((JSONArray) obj.get("weather")).get(0);
 			this.description = ((String) weather.get("description"));
-			
-			//Get windspeed
-			this.windspeed = ((Double)((JSONObject) obj.get("wind")).get("speed"));
-			
-			//Get temperature
+
+			// Get windspeed
+			this.windspeed = ((Double) ((JSONObject) obj.get("wind")).get("speed"));
+
+			// Get temperature
 			JSONObject main = (JSONObject) obj.get("main");
 			double tempK = (Double) main.get("temp");
-			this.temp = (((tempK*9)/5) - 459.67);
-			
+			this.temp = (((tempK * 9) / 5) - 459.67);
+
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	
+
 	/**
 	 * Fetches JSON data from API at the given URL
-	 * @param myURL the URL to the API
+	 * 
+	 * @param myURL
+	 *            the URL to the API
 	 * @return a JSON string
 	 */
 	public static String callURL(String myURL) {
@@ -92,10 +93,10 @@ public class WeatherAPI {
 					bufferedReader.close();
 				}
 			}
-		in.close();
+			in.close();
 		} catch (Exception e) {
-			throw new RuntimeException("Exception while calling URL:"+ myURL, e);
-		} 
+			throw new RuntimeException("Exception while calling URL:" + myURL, e);
+		}
 		return builder.toString();
 	}
 

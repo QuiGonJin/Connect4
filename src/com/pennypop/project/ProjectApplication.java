@@ -13,25 +13,24 @@ import com.pennypop.project.screens.MainScreen;
  * The {@link ApplicationListener} for this project, create(), resize() and
  * render() are the only methods that are relevant
  * 
- * @author Richard Taylor
- * */
+ * @author Richard Taylor, Kevin Chen
+ */
 public class ProjectApplication extends Game {
 
 	private Screen screen;
 	public static ProjectApplication app;
-	
+
 	public static void main(String[] args) {
-		new LwjglApplication(new ProjectApplication(), "PennyPop", 1280, 720,
-				true);
+		new LwjglApplication(new ProjectApplication(), "PennyPop", 1280, 720, true);
 	}
 
 	@Override
 	public void create() {
 		app = this;
-		
+
 		Assets.load();
 		Assets.manager.finishLoading();
-	
+
 		screen = new MainScreen();
 		setScreen(screen);
 	}
@@ -52,7 +51,7 @@ public class ProjectApplication extends Game {
 	public void render() {
 		clearWhite();
 		super.render();
-		//screen.render(Gdx.graphics.getDeltaTime());
+		// screen.render(Gdx.graphics.getDeltaTime());
 	}
 
 	/** Clears the screen with a white color */
