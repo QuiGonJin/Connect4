@@ -46,39 +46,39 @@ public class MainScreen implements Screen {
 		
 		//Add 'SFX' button and listener
 		ImageButton sfxButton = new ImageButton(skin, "sfxButton");
-        sfxButton.setPosition(Gdx.graphics.getWidth()/4 - sfxButton.getWidth(), Gdx.graphics.getHeight()/2 - sfxButton.getWidth());
-        sfxButton.addListener(new InputListener() {
-            @Override
-            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                Sound sound = Assets.manager.get(Assets.CLICK_SOUND);
-            	sound.play();
-                return true;
-            }
-        });
-        stage.addActor(sfxButton);
-        
+		sfxButton.setPosition(Gdx.graphics.getWidth()/4 - sfxButton.getWidth(), Gdx.graphics.getHeight()/2 - sfxButton.getWidth());
+		sfxButton.addListener(new InputListener() {
+			@Override
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+			    Sound sound = Assets.manager.get(Assets.CLICK_SOUND);
+				sound.play();
+			    return true;
+			}
+		});
+		stage.addActor(sfxButton);
+		
 		//Add 'API' button and define listener
 		ImageButton apiButton = new ImageButton(skin, "apiButton");
         apiButton.setPosition(sfxButton.getX() + sfxButton.getWidth(), sfxButton.getY());
-        apiButton.addListener(new InputListener() {
-            @Override
-            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	displayWeather();
-                return true;
-            }
-        });
-        stage.addActor(apiButton);
+		apiButton.addListener(new InputListener() {
+		    @Override
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				displayWeather();
+				return true;
+			}
+		});
+		stage.addActor(apiButton);
         	
 		//Add Player vs Player 'Game' button and listener
 		ImageButton gameButton = new ImageButton(skin, "gameButton");
         gameButton.setPosition(Gdx.graphics.getWidth()/4 - sfxButton.getWidth(), Gdx.graphics.getHeight()/2 - sfxButton.getWidth()*2);
         gameButton.addListener(new InputListener() {
             @Override
-            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	Screen gameScreen = new GameScreen(false);
-            	ProjectApplication.app.setScreen(gameScreen);
-                return true;
-            }
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				Screen gameScreen = new GameScreen(false);
+				ProjectApplication.app.setScreen(gameScreen);
+				return true;
+			}
         });
         stage.addActor(gameButton);
         
@@ -102,29 +102,29 @@ public class MainScreen implements Screen {
 	 */
 	private void displayWeather(){
 		WeatherAPI weather = new WeatherAPI("http://api.openweathermap.org/data/2.5/weather?q=San%20Francisco,US&appid=2e32d2b4b825464ec8c677a49531e9ae");
-        
+		
 		//------------ Create Labels for weather conditions -----------//
 		//Add label for "Current Weather"
 		Label currentWeather = new Label("Current Weather", skin, "colored");
-        currentWeather.setPosition((float) (Gdx.graphics.getWidth() * 0.7 - currentWeather.getWidth()/2), (float) (Gdx.graphics.getHeight() * 0.6));
-        currentWeather.setColor(Color.BLACK);
-        stage.addActor(currentWeather);
-        
-        //Add label for city
-        Label city = new Label(weather.getName(), skin, "colored");
-        city.setPosition((float) (Gdx.graphics.getWidth() * 0.7 - city.getWidth()/2), currentWeather.getY() - currentWeather.getHeight());
-        city.setColor(Color.BLUE);
-        stage.addActor(city);
-        
-        //Add label for sky conditions
-        Label description = new Label("Sky: " + weather.getDescription(), skin);
-        description.setPosition((float) (Gdx.graphics.getWidth() * 0.7 - description.getWidth()/2), city.getY() - currentWeather.getHeight()*2);
-        stage.addActor(description);
-        
-        //Add label for temperature and wind
-        Label tempAndWind = new Label(Math.round(weather.getTemp()) + " degrees, " + weather.getWindspeed() +"mph wind", skin);
-        tempAndWind.setPosition((float) (Gdx.graphics.getWidth() * 0.7 - tempAndWind.getWidth()/2), description.getY() - currentWeather.getHeight());
-        stage.addActor(tempAndWind);
+		currentWeather.setPosition((float) (Gdx.graphics.getWidth() * 0.7 - currentWeather.getWidth()/2), (float) (Gdx.graphics.getHeight() * 0.6));
+		currentWeather.setColor(Color.BLACK);
+		stage.addActor(currentWeather);
+		
+		//Add label for city
+		Label city = new Label(weather.getName(), skin, "colored");
+		city.setPosition((float) (Gdx.graphics.getWidth() * 0.7 - city.getWidth()/2), currentWeather.getY() - currentWeather.getHeight());
+		city.setColor(Color.BLUE);
+		stage.addActor(city);
+		
+		//Add label for sky conditions
+		Label description = new Label("Sky: " + weather.getDescription(), skin);
+		description.setPosition((float) (Gdx.graphics.getWidth() * 0.7 - description.getWidth()/2), city.getY() - currentWeather.getHeight()*2);
+		stage.addActor(description);
+		
+		//Add label for temperature and wind
+		Label tempAndWind = new Label(Math.round(weather.getTemp()) + " degrees, " + weather.getWindspeed() +"mph wind", skin);
+		tempAndWind.setPosition((float) (Gdx.graphics.getWidth() * 0.7 - tempAndWind.getWidth()/2), description.getY() - currentWeather.getHeight());
+		stage.addActor(tempAndWind);
 	}
 	
 	
@@ -136,7 +136,7 @@ public class MainScreen implements Screen {
 	  BitmapFont font = Assets.manager.get(Assets.FONT);
 	  skin = new Skin();
 	  skin.add("default", font);
-
+	
 	  //Create label style with default red color
 	  Label.LabelStyle labelStyle = new Label.LabelStyle(font, Color.RED);
 	  skin.add("default", labelStyle);
