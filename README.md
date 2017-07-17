@@ -1,6 +1,6 @@
 LibGDX Connect 4 by Kevin Chen
 ===============================
-This is a simple connect 4 game created with LibGDX for an interview.
+This is a simple connect 4 game with some miscellaneous functionalities created with LibGDX
 The app consists of 2 screens:
 
 **MainScreen:**
